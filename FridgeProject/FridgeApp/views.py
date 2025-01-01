@@ -1,7 +1,7 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, DetailView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView
 
 from FridgeApp.forms import FridgeForm, FridgeImageForm
 from FridgeApp.models import Fridge, FridgeImage
@@ -116,3 +116,31 @@ class FridgeDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['images'] = self.object.images.all()
         return context
+
+class FridgeUpdateView(UpdateView):
+    model = Fridge
+    form_class = FridgeForm
+    template_name = 'update.html'
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(Fridge, slug=self.kwargs['slug'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        fridge = self.get_object()
+        context['fridge_image_form'] = FridgeImageForm()
+        context['fridge'] = fridge
+        return context
+
+    def form_valid(self, form):
+        fridge = form.save(commit=False)
+
+        if self.request.FILES.get('image'):
+            fridge_image = FridgeImage(fridge=fridge, image=self.request.FILES['image'])
+            fridge_image.save()
+        fridge.save()
+
+        return redirect(reverse_lazy('details', kwargs={'slug': fridge.slug}))
+
+    def success_url(self):
+        return reverse_lazy('details', kwargs={'slug': self.kwargs['slug']})

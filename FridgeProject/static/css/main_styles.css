@@ -195,3 +195,21 @@ button[type="submit"]:hover {
     font-size: 16px;
     margin: 5px 0;
 }
+
+.fridge-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.image-container {
+    width: 200px;
+    text-align: center;
+}
+
+.fridge-image {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+}

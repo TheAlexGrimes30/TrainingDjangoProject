@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Fridge Details{% endblock %}
+
+{% block content %}
+    <h1>Update Fridge: {{ fridge.brand }} - {{ fridge.model }}</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <h3>Update Images</h3>
+        {% for image in fridge.images.all %}
+            <div class="image-container">
+                <img src="{{ image.image.url }}" alt="{{ image.alt_text }}" class="fridge-image">
+                <p>{{ image.alt_text }}</p>
+            </div>
+        {% endfor %}
+
+        <h3>Upload New Image</h3>
+        {{ fridge_image_form.as_p }}
+
+        <button type="submit">Update Fridge</button>
+    </form>
+
+    <a href="{% url 'details' slug=fridge.slug %}" class="btn btn-secondary">Cancel</a>
+{% endblock %}

@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path
 
 from FridgeApp.views import home, contacts, info, FridgeCreateView, FridgeListView, FridgeImageCreateView, \
-    FridgeDetailView
+    FridgeDetailView, FridgeUpdateView
 from FridgeProject import settings
 
 urlpatterns = [
@@ -31,6 +31,7 @@ urlpatterns = [
     path('fridges/', FridgeListView.as_view(), name="fridges"),
     path('create/<slug:slug>/image-upload/', FridgeImageCreateView.as_view(), name="image-upload"),
     path('fridges/<slug:slug>/', FridgeDetailView.as_view(), name='details'),
+    path('fridges/<slug:slug>/update/', FridgeUpdateView.as_view(), name='update'),
 ]
 
 if settings.DEBUG:

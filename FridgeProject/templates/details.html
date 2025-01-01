@@ -1,4 +1,4 @@
-\{% extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}Fridge Details{% endblock %}
 
@@ -13,14 +13,13 @@
         <div class="fridge-images">
             {% for image in images %}
                 <div class="image-container">
-                    <img src="{{ image.image.url }}" alt="{{ image.alt_text }}">
-                    {% if image.alt_text %}
-                        <p>{{ image.alt_text }}</p>
-                    {% endif %}
+                    <img src="{{ image.image.url }}" alt="{{ image.alt_text }}" class="fridge-image">
                 </div>
             {% endfor %}
         </div>
     {% else %}
         <p>No images available for this fridge.</p>
     {% endif %}
+
+    <a href="{% url 'update' slug=fridge.slug %}" class="btn btn-primary">Update Fridge Details</a>
 {% endblock %}
