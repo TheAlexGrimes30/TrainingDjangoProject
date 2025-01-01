@@ -16,8 +16,15 @@ class Fridge(models.Model):
         return f"{self.brand} {self.model}"
 
     def save(self, *args, **kwargs):
-        if not self.slug or self.pk is None:
-            self.slug = slugify(f"{self.brand}-{self.model}")
+        if not self.slug:
+            self.slug = slugify(self.brand + '-' + self.model)
+        original_slug = self.slug
+        queryset = Fridge.objects.filter(slug=self.slug)
+        count = 1
+        while queryset.exists():
+            self.slug = f"{original_slug}-{count}"
+            count += 1
+            queryset = Fridge.objects.filter(slug=self.slug)
         super().save(*args, **kwargs)
 
     class Meta:

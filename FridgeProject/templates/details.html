@@ -1,0 +1,26 @@
+\{% extends 'base.html' %}
+
+{% block title %}Fridge Details{% endblock %}
+
+{% block content %}
+    <h1>{{ fridge.brand }} - {{ fridge.model }}</h1>
+    <p>Price: {{ fridge.price }}$</p>
+    <p>Capacity: {{ fridge.capacity }} L</p>
+    <p>Description: {{ fridge.description }}</p>
+
+    <h2>Images</h2>
+    {% if images %}
+        <div class="fridge-images">
+            {% for image in images %}
+                <div class="image-container">
+                    <img src="{{ image.image.url }}" alt="{{ image.alt_text }}">
+                    {% if image.alt_text %}
+                        <p>{{ image.alt_text }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No images available for this fridge.</p>
+    {% endif %}
+{% endblock %}

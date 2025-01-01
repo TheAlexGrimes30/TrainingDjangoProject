@@ -18,7 +18,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from FridgeApp.views import home, contacts, info, FridgeCreateView, FridgeListView
+from FridgeApp.views import home, contacts, info, FridgeCreateView, FridgeListView, FridgeImageCreateView, \
+    FridgeDetailView
 from FridgeProject import settings
 
 urlpatterns = [
@@ -28,7 +29,9 @@ urlpatterns = [
     path('info/', info, name="info"),
     path('create/', FridgeCreateView.as_view(), name="create"),
     path('fridges/', FridgeListView.as_view(), name="fridges"),
+    path('create/<slug:slug>/image-upload/', FridgeImageCreateView.as_view(), name="image-upload"),
+    path('fridges/<slug:slug>/', FridgeDetailView.as_view(), name='details'),
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

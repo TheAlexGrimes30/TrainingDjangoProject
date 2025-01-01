@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}Upload Images{% endblock %}
+
+{% block content %}
+<h1>Upload Images for {{ fridge.brand }} {{ fridge.model }}</h1>
+
+<form method="post" enctype="multipart/form-data" class="form-container">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-primary">Upload Image</button>
+</form>
+
+<h2>Uploaded Images:</h2>
+<div class="image-gallery">
+    {% for image in fridge.images.all %}
+        <div class="image-item">
+            <img src="{{ image.image.url }}" alt="{{ image.alt_text }}" style="width: 150px; height: 150px;">
+            <p>{{ image.alt_text }}</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -32,7 +32,9 @@
             <ul>
                 {% for fridge in fridges %}
                     <li>
-                        <h3>{{ fridge.brand }} - {{ fridge.model }}</h3>
+                        <a href="{% url 'details' slug=fridge.slug %}">
+                            <h3>{{ fridge.brand }} - {{ fridge.model }}</h3>
+                        </a>
                         <p>Price: {{ fridge.price }}$</p>
                         <p>Capacity: {{ fridge.capacity }} L</p>
                     </li>

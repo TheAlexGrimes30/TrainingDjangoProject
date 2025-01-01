@@ -38,6 +38,10 @@ class FridgeImageForm(forms.ModelForm):
     class Meta:
         model = FridgeImage
         fields = ['image', 'alt_text']
+        widgets = {
+            'image': forms.ClearableFileInput(attrs={'id': 'id_image'}),
+            'alt_text': forms.TextInput(attrs={'id': 'id_alt_text'}),
+        }
         error_messages = {
             'image': {
                 'required': 'Please add new image with formats (.jpg, .jpeg, .png)',
