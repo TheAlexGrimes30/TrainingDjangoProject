@@ -1,3 +1,4 @@
+/* Основные стили для страницы */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(to right, #32cd32, #00f2fe);
@@ -79,7 +80,118 @@ h3:hover {
     transform: translateY(-5px);
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
+/* Стили формы */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    width: 500px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+    border-color: #32cd32;
+    outline: none;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: #32cd32;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button[type="submit"]:hover {
+    background: #00f2fe;
+    transform: translateY(-3px);
+}
+
+/* Стили ошибок */
+.errorlist {
+    background: #ffe6e6;
+    color: #cc0000;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #cc0000;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.errorlist ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.errorlist li {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.fridges-list {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.fridges-list ul {
+    padding: 0;
+    margin: 0;
+}
+
+.fridges-list li {
+    background: #f8f8f8;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.fridges-list li:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-5px);
+}
+
+.fridges-list h3 {
+    color: #333;
+    font-size: 22px;
+    margin: 0;
+}
+
+.fridges-list p {
+    color: #777;
+    font-size: 16px;
+    margin: 5px 0;
 }

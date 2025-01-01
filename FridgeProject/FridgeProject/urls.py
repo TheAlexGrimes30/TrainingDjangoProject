@@ -18,7 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from FridgeApp.views import home, contacts, info
+from FridgeApp.views import home, contacts, info, FridgeCreateView, FridgeListView
 from FridgeProject import settings
 
 urlpatterns = [
@@ -26,6 +26,8 @@ urlpatterns = [
     path('', home, name="home"),
     path('contacts/', contacts, name="contacts"),
     path('info/', info, name="info"),
+    path('create/', FridgeCreateView.as_view(), name="create"),
+    path('fridges/', FridgeListView.as_view(), name="fridges"),
 ]
 
 if settings.DEBUG:

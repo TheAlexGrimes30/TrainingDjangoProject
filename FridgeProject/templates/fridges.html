@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Fridges List{% endblock %}
+
+{% block content %}
+    <h1>Fridges List</h1>
+
+    <form method="get" class="form-container">
+        <label for="brand">Brand</label>
+        <input type="text" id="brand" name="brand" value="{{ filters.brand }}">
+
+        <label for="model">Model</label>
+        <input type="text" id="model" name="model" value="{{ filters.model }}">
+
+        <label for="min_price">Min Price</label>
+        <input type="number" id="min_price" name="min_price" value="{{ filters.min_price }}">
+
+        <label for="max_price">Max Price</label>
+        <input type="number" id="max_price" name="max_price" value="{{ filters.max_price }}">
+
+        <label for="min_capacity">Min Capacity</label>
+        <input type="number" id="min_capacity" name="min_capacity" value="{{ filters.min_capacity }}">
+
+        <label for="max_capacity">Max Capacity</label>
+        <input type="number" id="max_capacity" name="max_capacity" value="{{ filters.max_capacity }}">
+
+        <button type="submit">Apply Filters</button>
+    </form>
+
+    <div class="fridges-list">
+        {% if fridges %}
+            <ul>
+                {% for fridge in fridges %}
+                    <li>
+                        <h3>{{ fridge.brand }} - {{ fridge.model }}</h3>
+                        <p>Price: {{ fridge.price }}$</p>
+                        <p>Capacity: {{ fridge.capacity }} L</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No fridges found with the selected filters.</p>
+        {% endif %}
+    </div>
+{% endblock %}
