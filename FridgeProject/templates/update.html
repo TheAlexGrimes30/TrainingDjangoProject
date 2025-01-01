@@ -9,7 +9,6 @@
         {% csrf_token %}
         {{ form.as_p }}
 
-        <h3>Update Images</h3>
         {% for image in fridge.images.all %}
             <div class="image-container">
                 <img src="{{ image.image.url }}" alt="{{ image.alt_text }}" class="fridge-image">
@@ -20,7 +19,7 @@
         <h3>Upload New Image</h3>
         {{ fridge_image_form.as_p }}
 
-        <button type="submit">Update Fridge</button>
+        <button type="submit" class="btn btn-primary">Update Fridge</button>
     </form>
 
     <a href="{% url 'details' slug=fridge.slug %}" class="btn btn-secondary">Cancel</a>

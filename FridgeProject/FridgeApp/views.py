@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, DetailView, UpdateView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
 from FridgeApp.forms import FridgeForm, FridgeImageForm
 from FridgeApp.models import Fridge, FridgeImage
@@ -144,3 +144,13 @@ class FridgeUpdateView(UpdateView):
 
     def success_url(self):
         return reverse_lazy('details', kwargs={'slug': self.kwargs['slug']})
+
+class FridgeDeleteView(DeleteView):
+    model = Fridge
+    template_name = "delete.html"
+    success_url = reverse_lazy('fridges')
+
+    def delete(self, request, *args, **kwargs):
+        fridge = self.get_object()
+        FridgeImage.objects.filter(fridge=fridge).delete()
+        return super().delete(request, *args, **kwargs)

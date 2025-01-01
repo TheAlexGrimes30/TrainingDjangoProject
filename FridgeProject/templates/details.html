@@ -22,4 +22,5 @@
     {% endif %}
 
     <a href="{% url 'update' slug=fridge.slug %}" class="btn btn-primary">Update Fridge Details</a>
+    <a href="{% url 'delete' slug=fridge.slug %}" class="btn btn-primary">Delete Fridge Details</a>
 {% endblock %}
