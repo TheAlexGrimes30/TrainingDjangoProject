@@ -47,9 +47,7 @@ class FridgeListView(FridgeFilterMixin, FridgeContextMixin, TitleMixin, ListView
 
     def get_queryset(self):
         queryset = Fridge.objects.all()
-
         queryset = self.get_filter_fridge_data(queryset)
-
         return queryset
 
 
