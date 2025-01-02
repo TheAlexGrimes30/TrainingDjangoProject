@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
-{% block title %}Fridges List{% endblock %}
+{% block title %}{{title|default:"No name"}}{% endblock %}
+
 
 {% block content %}
     <h1>Fridges List</h1>
@@ -28,7 +29,6 @@
         <button type="submit">Apply Filters</button>
     </form>
 
-    <!-- Список холодильников -->
     <div class="fridges-list">
         {% if fridges %}
             <ul>

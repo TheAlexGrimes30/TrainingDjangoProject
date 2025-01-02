@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Update Fridge Details{% endblock %}
+{% block title %}{{title|default:"No name"}}{% endblock %}
 
 {% block content %}
     <h1>Update Fridge: {{ fridge.brand }} - {{ fridge.model }}</h1>

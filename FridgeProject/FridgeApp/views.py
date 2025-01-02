@@ -5,6 +5,7 @@ from django.views.generic import CreateView, ListView, DetailView, UpdateView, D
 
 from FridgeApp.forms import FridgeForm, FridgeImageForm
 from FridgeApp.models import Fridge, FridgeImage
+from FridgeApp.utils import TitleMixin
 
 
 def home(request) -> HttpResponse:
@@ -25,26 +26,24 @@ def info(request) -> HttpResponse:
     }
     return render(request, "info.html", context=context)
 
-class FridgeCreateView(CreateView):
+class FridgeCreateView(TitleMixin, CreateView):
     model = Fridge
     form_class = FridgeForm
     template_name = 'fridge_create.html'
+    title = "Create a New Fridge"
 
     def form_valid(self, form):
         fridge = form.save(commit=False)
         fridge.save()
         return redirect('image-upload', slug=fridge.slug)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Create a New Fridge'
-        return context
 
-class FridgeListView(ListView):
+class FridgeListView(TitleMixin, ListView):
     model = Fridge
     template_name = 'fridges.html'
     context_object_name = 'fridges'
     paginate_by = 7
+    title = "Fridges"
 
     def get_queryset(self):
         queryset = Fridge.objects.all()
@@ -85,10 +84,11 @@ class FridgeListView(ListView):
         context['filters'] = self.request.GET
         return context
 
-class FridgeImageCreateView(CreateView):
+class FridgeImageCreateView(TitleMixin, CreateView):
     model = FridgeImage
     form_class = FridgeImageForm
     template_name = 'image_create.html'
+    title = "Upload Fridge Image"
 
     def form_valid(self, form):
         fridge_slug = self.kwargs['slug']
@@ -98,27 +98,28 @@ class FridgeImageCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'New Fridge Image'
         context['fridge'] = Fridge.objects.get(slug=self.kwargs['slug'])
         return context
 
     def get_success_url(self):
         return reverse_lazy('details', kwargs={'slug': self.kwargs['slug']})
 
-class FridgeDetailView(DetailView):
+class FridgeDetailView(TitleMixin, DetailView):
     model = Fridge
     template_name = 'details.html'
     context_object_name = 'fridge'
+    title = "Fridge Details"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['images'] = self.object.images.all()
         return context
 
-class FridgeUpdateView(UpdateView):
+class FridgeUpdateView(TitleMixin, UpdateView):
     model = Fridge
     form_class = FridgeForm
     template_name = 'update.html'
+    title = "Update Fridge"
 
     def get_object(self, queryset=None):
         return get_object_or_404(Fridge, slug=self.kwargs['slug'])
@@ -143,10 +144,11 @@ class FridgeUpdateView(UpdateView):
     def success_url(self):
         return reverse_lazy('details', kwargs={'slug': self.kwargs['slug']})
 
-class FridgeDeleteView(DeleteView):
+class FridgeDeleteView(TitleMixin, DeleteView):
     model = Fridge
     template_name = "delete.html"
     success_url = reverse_lazy('fridges')
+    title = "Delete Fridge"
 
     def delete(self, request, *args, **kwargs):
         fridge = self.get_object()
