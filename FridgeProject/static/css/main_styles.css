@@ -233,15 +233,13 @@ button[type="submit"]:hover {
     border: none;
 }
 
-/* Эффекты при наведении */
 .btn-primary:hover {
-    background: #00f2fe; /* Голубой цвет */
+    background: #00f2fe;
     transform: translateY(-3px);
 }
 
-/* Стили для кнопки при нажатии */
 .btn-primary:active {
-    background: #28a745; /* Темно-зеленый */
+    background: #28a745;
     transform: translateY(1px);
 }
 
