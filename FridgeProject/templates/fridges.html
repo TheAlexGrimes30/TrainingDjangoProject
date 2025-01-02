@@ -5,6 +5,7 @@
 {% block content %}
     <h1>Fridges List</h1>
 
+    <!-- Форма фильтров -->
     <form method="get" class="form-container">
         <label for="brand">Brand</label>
         <input type="text" id="brand" name="brand" value="{{ filters.brand }}">
@@ -27,6 +28,7 @@
         <button type="submit">Apply Filters</button>
     </form>
 
+    <!-- Список холодильников -->
     <div class="fridges-list">
         {% if fridges %}
             <ul>
@@ -44,4 +46,23 @@
             <p>No fridges found with the selected filters.</p>
         {% endif %}
     </div>
+
+    <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1&{{ query_params }}">« first</a>
+            <a href="?page={{ page_obj.previous_page_number }}&{{ query_params }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}&{{ query_params }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}&{{ query_params }}">last »</a>
+        {% endif %}
+    </span>
+</div>
+
 {% endblock %}

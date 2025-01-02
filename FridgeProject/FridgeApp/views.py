@@ -44,12 +44,13 @@ class FridgeListView(ListView):
     model = Fridge
     template_name = 'fridges.html'
     context_object_name = 'fridges'
+    paginate_by = 7
 
     def get_queryset(self):
         queryset = Fridge.objects.all()
 
-        brand = self.request.GET.get('brand')
-        model = self.request.GET.get('model')
+        brand = self.request.GET.get('brand', '')
+        model = self.request.GET.get('model', '')
         min_price = self.request.GET.get('min_price')
         max_price = self.request.GET.get('max_price')
         min_capacity = self.request.GET.get('min_capacity')
@@ -77,14 +78,11 @@ class FridgeListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['filters'] = {
-            'brand': self.request.GET.get('brand', ''),
-            'model': self.request.GET.get('model', ''),
-            'min_price': self.request.GET.get('min_price', ''),
-            'max_price': self.request.GET.get('max_price', ''),
-            'min_capacity': self.request.GET.get('min_capacity', ''),
-            'max_capacity': self.request.GET.get('max_capacity', ''),
-        }
+        query_params = self.request.GET.copy()
+        if 'page' in query_params:
+            query_params.pop('page')
+        context['query_params'] = query_params.urlencode()
+        context['filters'] = self.request.GET
         return context
 
 class FridgeImageCreateView(CreateView):
