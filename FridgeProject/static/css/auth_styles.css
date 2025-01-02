@@ -1,0 +1,159 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #32cd32, #00f2fe);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 100%;
+    background: #32cd32;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #00f2fe;
+}
+
+.container {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 30px;
+    width: 600px;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 100px auto 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #4CAF50;
+    margin-top: 20px;
+    font-size: 36px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+h3 {
+    text-align: center;
+    color: #333;
+    text-decoration: none;
+    margin: 15px 0;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+h3:hover {
+    background-color: #ddd;
+    transform: translateY(-5px);
+}
+
+/* Стили формы */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    width: 500px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+    border-color: #32cd32;
+    outline: none;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: #32cd32;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button[type="submit"]:hover {
+    background: #00f2fe;
+    transform: translateY(-3px);
+}
+
+/* Стили ошибок */
+.errorlist {
+    background: #ffe6e6;
+    color: #cc0000;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #cc0000;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.errorlist ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.errorlist li {
+    font-size: 14px;
+    margin: 5px 0;
+}
