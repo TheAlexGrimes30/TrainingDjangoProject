@@ -5,13 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
+    <title>Login</title>
     <link rel="stylesheet" href="{% static 'css/auth_styles.css' %}">
 </head>
 <body>
 
     <div class="container">
-        <h1>Register</h1>
+        <h1>Login</h1>
 
         <form method="POST" class="form-container">
             {% csrf_token %}
@@ -27,7 +27,7 @@
                 </div>
             {% endif %}
 
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary">Login</button>
         </form>
 
         {% if messages %}
@@ -37,6 +37,8 @@
                 {% endfor %}
             </div>
         {% endif %}
+
+        <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
     </div>
 </body>
 </html>

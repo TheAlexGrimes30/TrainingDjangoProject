@@ -18,7 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from AuthApp.views import CustomUserRegistrationView
+from AuthApp.views import CustomUserRegistrationView, CustomLoginView
 from FridgeApp.views import home, contacts, info, FridgeCreateView, FridgeListView, FridgeImageCreateView, \
     FridgeDetailView, FridgeUpdateView, FridgeDeleteView
 from FridgeProject import settings
@@ -35,6 +35,7 @@ urlpatterns = [
     path('fridges/<slug:slug>/update/', FridgeUpdateView.as_view(), name='update'),
     path('fridges/<slug:slug>/delete/', FridgeDeleteView.as_view(), name='delete'),
     path('register/', CustomUserRegistrationView.as_view(), name='register'),
+    path('login/', CustomLoginView.as_view(), name='login'),
 ]
 
 if settings.DEBUG:
