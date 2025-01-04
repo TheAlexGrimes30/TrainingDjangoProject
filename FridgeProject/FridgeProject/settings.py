@@ -23,7 +23,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-1m$qct-ahli%un9xv2sgn*7p%x(v9c8u%9!k_x@764al%o_0wn'
 
-JWT_SECRET_KEY = 'vYyTz9yDqjCzLgA2N3FqRfVHHgKhvAyz9FcbRzRczdM'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -107,8 +106,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-JWT_ALGORITHM = 'HS256'
-JWT_EXP_DELTA_DAYS = 1
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',

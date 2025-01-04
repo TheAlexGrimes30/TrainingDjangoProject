@@ -9,8 +9,6 @@ from django.views.generic import CreateView
 
 from AuthApp.models import CustomUser
 from AuthApp.forms import CustomUserRegistrationForm
-from FridgeProject import settings
-
 
 class CustomUserRegistrationView(CreateView):
     model = CustomUser
